@@ -16,6 +16,9 @@ interface ArticlesDao {
     @Delete
     fun delete(article: Article)
 
+    @Query("DELETE FROM article")
+    fun deleteAll()
+
     @Insert
     fun insertAll(article: List<Article>)
 }

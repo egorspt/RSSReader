@@ -29,13 +29,12 @@ class ArticleRVAdapter(private val list: List<Article>)
 class ArticleViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.article_rv_item, parent, false)) {
     private var title: TextView? = null
-    private var date: TextView? = null
     private var description: String? = null
 
     init {
         title = itemView.findViewById(R.id.title)
         itemView.findViewById<CardView>(R.id.card_view).setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundleOf("title" to title?.text.toString(), "description" to description))
+            view.findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment, bundleOf("title" to title?.text.toString(), "description" to description))
         }
 
     }
@@ -43,7 +42,6 @@ class ArticleViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bind(value: Article) {
         title?.text = value.title
         description = value.description
-        date?.text = value.date?.substring(0, value.date.length - 8)
     }
 
 }

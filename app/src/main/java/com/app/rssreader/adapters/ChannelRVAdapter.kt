@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.rssreader.R
 import com.app.rssreader.database.RSSChannel
 
-class ChannelRVAdapter(private val list: List<RSSChannel>)
+class ChannelRVAdapter(private var list: List<RSSChannel>)
     : RecyclerView.Adapter<ChannelViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChannelViewHolder {
@@ -24,6 +24,11 @@ class ChannelRVAdapter(private val list: List<RSSChannel>)
     }
 
     override fun getItemCount(): Int = list.size
+
+    fun setData(newList: List<RSSChannel>) {
+        list = newList
+        notifyDataSetChanged()
+    }
 }
 
 class ChannelViewHolder(inflater: LayoutInflater, parent: ViewGroup) :

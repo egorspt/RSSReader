@@ -1,4 +1,4 @@
-package com.app.rssreader.ui
+package com.app.rssreader.ui.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -33,16 +33,16 @@ class SecondFragmentViewModel(application: Application) : AndroidViewModel(appli
     private fun refreshNews(link: String){
         val parser = Parser.Builder()
             .context(getApplication())
-            //.charset(Charset.forName("ISO-8859-7"))
             .cacheExpirationMillis(24L * 60L * 60L * 100L) // one day
             .build()
 
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val channel = parser.getChannel(link)
+                articlesDao.deleteAll()
                 for(article: com.prof.rssparser.Article in channel.articles)
                     articlesDao.insert(Article(article.link!!, article.description, article.title, article.image, article.pubDate))
-                _news.value = articlesDao.getAll()
+                _news.postValue(articlesDao.getAll())
             } catch (e: Exception) {
                 e.printStackTrace()
             }

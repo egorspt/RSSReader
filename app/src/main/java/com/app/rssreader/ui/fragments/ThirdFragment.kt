@@ -1,4 +1,4 @@
-package com.app.rssreader.ui
+package com.app.rssreader.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
 import com.app.rssreader.R
-import com.app.rssreader.adapters.ArticleRVAdapter
 
 class ThirdFragment : Fragment() {
 
@@ -18,6 +15,7 @@ class ThirdFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.title = ""
         return inflater.inflate(R.layout.fragment_third, container, false)
     }
 
@@ -25,7 +23,7 @@ class ThirdFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val title = view.findViewById<TextView>(R.id.title).apply { text = arguments?.getString("title")!! }
-        val description = view.findViewById<TextView>(R.id.title).apply { text = arguments?.getString("description")!! }
+        val description = view.findViewById<TextView>(R.id.text).apply { text = arguments?.getString("description")!! }
 
     }
 }
