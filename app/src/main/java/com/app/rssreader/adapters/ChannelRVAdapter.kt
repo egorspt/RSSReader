@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.app.rssreader.R
@@ -40,7 +41,8 @@ class ChannelViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     init {
         mTextView = itemView.findViewById(R.id.title)
-        itemView.findViewById<CardView>(R.id.card_view).setOnClickListener {view ->
+        itemView.findViewById<CardView>(R.id.card_view)
+            .setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundleOf("title" to title, "link" to link))
         }
 
